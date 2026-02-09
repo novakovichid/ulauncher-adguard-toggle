@@ -1,0 +1,23 @@
+{
+  "required_api_version": "2",
+  "name": "AdGuard VPN Toggle",
+  "description": "Connect/disconnect AdGuard VPN and show current status",
+  "developer_name": "novakovichid",
+  "icon": "images/icon.png",
+  "preferences": [
+    {
+      "id": "adguard_kw",
+      "type": "keyword",
+      "name": "AdGuard VPN",
+      "description": "Type this keyword to open extension",
+      "default_value": "agv"
+    },
+    {
+      "id": "adguard_cli",
+      "type": "input",
+      "name": "CLI command",
+      "description": "AdGuard VPN CLI executable",
+      "default_value": "adguardvpn"
+    }
+  ]
+}
