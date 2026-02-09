@@ -1,0 +1,1 @@
+# ulauncher-adguard-toggle
