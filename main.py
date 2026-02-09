@@ -99,32 +99,32 @@ def read_status(extension):
 
 def build_items(extension):
     status = read_status(extension)
+    if status["connected"]:
+        toggle_action = "disconnect"
+        toggle_label = "Toggle: отключить AdGuard VPN"
+        secondary_action = "connect"
+        secondary_label = "Подключить AdGuard VPN"
+    else:
+        toggle_action = "connect"
+        toggle_label = "Toggle: подключить AdGuard VPN"
+        secondary_action = "disconnect"
+        secondary_label = "Отключить AdGuard VPN"
+
     items = [
+        ExtensionResultItem(
+            icon=ICON_PATH,
+            name=toggle_label,
+            description=f"{status['label']}. Нажмите, чтобы переключить.",
+            on_enter=ExtensionCustomAction({"action": toggle_action}, keep_app_open=True),
+        )
+    ]
+
+    items.append(
         ExtensionResultItem(
             icon=ICON_PATH,
             name=status["label"],
             description=status["description"],
             on_enter=ExtensionCustomAction({"action": "refresh"}, keep_app_open=True),
-        )
-    ]
-
-    if status["connected"]:
-        primary_action = "disconnect"
-        primary_label = "Отключить AdGuard VPN"
-        secondary_action = "connect"
-        secondary_label = "Подключить AdGuard VPN"
-    else:
-        primary_action = "connect"
-        primary_label = "Подключить AdGuard VPN"
-        secondary_action = "disconnect"
-        secondary_label = "Отключить AdGuard VPN"
-
-    items.append(
-        ExtensionResultItem(
-            icon=ICON_PATH,
-            name=primary_label,
-            description="Выполнить команду и обновить статус",
-            on_enter=ExtensionCustomAction({"action": primary_action}, keep_app_open=True),
         )
     )
 
